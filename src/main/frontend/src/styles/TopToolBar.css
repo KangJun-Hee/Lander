@@ -1,0 +1,56 @@
+.icons {
+  display: flex;
+  justify-content: flex-end;
+  /* font-size: 2rem; */
+}
+.TopToolBar .logInBtn,
+.TopToolBar .signUpBtn {
+  min-width: 5.8rem;
+  min-height: 2.45rem;
+  border-radius: 1.35rem;
+}
+.logInBtn {
+  border: 1px solid #e6e9f4;
+  background-color: white;
+}
+.signUpBtn {
+  background-color: #83a2ff;
+  color: white;
+  border: none;
+}
+.notifiAll {
+  position: relative;
+}
+.modal-overlay.noti {
+  position: absolute;
+  right: 1rem;
+  z-index: 1;
+
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.75rem 0.2rem hsl(225deg 100% 75.69% / 12%);
+}
+.notifiTop {
+  display: flex;
+}
+.notifiInfo,
+.notiTime {
+  font-size: 0.5rem;
+}
+.clearBtn,
+.notiLatest,
+.notiKind,
+.notiCont {
+  font-size: 0.6rem;
+}
+.notifiInfo,
+.clearBtn,
+.notiLatest,
+.notiTime {
+  color: #c1c3ca;
+}
+.aNotification {
+  display: flex;
+}
+.aNotification img {
+  width: 1.5rem;
+}

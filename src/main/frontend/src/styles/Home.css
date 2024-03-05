@@ -1,0 +1,103 @@
+.react-switch-checkbox {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.react-switch-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 100px;
+  height: 50px;
+  background: #7798f9;
+  border-radius: 100px;
+  position: relative;
+  transition: background-color 0.2s;
+}
+.react-switch-label .react-switch-button {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 45px;
+  height: 45px;
+  border-radius: 45px;
+  transition: 0.2s;
+  background: #fff;
+  box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+}
+.react-switch-checkbox:checked + .react-switch-label .react-switch-button {
+  left: calc(100% - 2px);
+  transform: translateX(-100%);
+}
+.react-switch-label:active .react-switch-button {
+  width: 60px;
+}
+
+.homeCss {
+  display: flex;
+}
+.allConForHome {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.vrAllWrap {
+  width: 100%;
+}
+.vrLiveContr {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+
+  padding-left: 1.5rem;
+}
+.changeTab {
+  padding-bottom: 1rem;
+}
+.changeTab .btnColour:first-child {
+  margin-right: 0.6rem;
+}
+.btnColour.selectedTab {
+  background-color: #7798f9;
+  color: white;
+}
+
+.carousel {
+  width: 157.2vh;
+  position: relative;
+  display: flex;
+  cursor: grab;
+}
+.mmtTitleForHome {
+  text-align: left;
+}
+.carousel.mmt {
+  margin-top: 3rem;
+}
+.vrContAll {
+  display: flex;
+  justify-content: space-evenly;
+}
+.vrContAll.Home .vrCont,
+.vrContAll.Home .liveAll {
+  margin: 0 0.4rem;
+}
+.vrContAll .mmtCont {
+  margin: 0 0.5rem;
+}
+.handle {
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  align-items: center;
+
+  font-size: 1.65rem;
+}

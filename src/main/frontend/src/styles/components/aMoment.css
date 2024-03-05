@@ -1,0 +1,29 @@
+.mmtContS {
+  width: 110vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: space-around;
+}
+
+.mmtCont {
+  width: 24.4rem;
+  height: 13.8rem;
+  background-color: white;
+
+  padding: 1rem;
+
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.75rem 0.2rem hsl(225deg 100% 75.69% / 12%);
+  /* margin-right: 1rem; */
+  margin-bottom: 2rem;
+}
+
+.rUp {
+  /* display: flex;
+  justify-content: space-between; */
+}
+.timeAndOption {
+  display: flex;
+  margin-left: 1rem;
+}

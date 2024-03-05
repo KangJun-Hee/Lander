@@ -1,0 +1,79 @@
+.logInWholePage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.logInWrap {
+  width: 27.2rem;
+  min-height: 41.95rem;
+
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.3);
+}
+.landerLogo {
+  width: 2.5rem;
+}
+.lander {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.Inputs.logIn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 20rem;
+}
+.Inputs.logIn input {
+  width: 17.25rem;
+  height: 2.75rem;
+
+  border-radius: 0.5rem;
+  border: 0.09rem solid #c4c4c4;
+
+  background-color: rgba(255, 255, 255, 0);
+}
+.Inputs.logIn input:not(:last-child) {
+  margin-bottom: 10px;
+}
+.Inputs.logIn input[type="text"]:focus {
+  border: 1px solid #83a2ff;
+  outline: none;
+}
+.inputBox {
+  position: relative;
+}
+
+.inputBox span {
+  position: absolute;
+  top: 0.8rem;
+  left: 0;
+  display: inline-block;
+  transition: 0.5s;
+  pointer-events: none;
+  color: #c1c3ca;
+}
+.Inputs.logIn .inputBox input:focus ~ span,
+.Inputs.logIn .inputBox input:not(:placeholder-shown) ~ span {
+  transform: translateY(-0.6rem);
+  color: #83a2ff;
+  font-size: 0.5rem;
+}
+
+.findPW {
+  font-size: 0.6rem;
+  color: #c1c3ca;
+}
+.or {
+  color: #c1c3ca;
+}
+
+.googleLogIn {
+  background-color: #ffffff00;
+  width: 17.85rem;
+  height: 2.85rem;
+  border-radius: 0.6rem;
+
+  border: 1px solid #d7dbec;
+  box-shadow: none;
+}

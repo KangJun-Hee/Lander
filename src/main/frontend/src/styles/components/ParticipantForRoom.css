@@ -1,0 +1,14 @@
+.participantForRoom {
+  background-color: white;
+  box-shadow: 0 3px 4px 0 hsl(0deg 0% 0% / 5%);
+}
+.participants img {
+  width: 2rem;
+}
+.aPartici {
+  display: flex;
+  margin: 1rem 2rem;
+}
+.aPartici:not(:last-child) {
+  border-bottom: 1px solid;
+}

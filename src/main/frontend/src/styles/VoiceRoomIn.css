@@ -1,0 +1,55 @@
+.vrDetPage {
+  display: flex;
+  justify-content: space-around;
+  height: 93vh;
+}
+
+.titleAttendee {
+  display: flex;
+  justify-content: space-between;
+}
+.roomTitle.inVR {
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.attendUsers .proImaDiv img {
+  width: 4rem;
+}
+
+.userNick {
+  width: 6rem;
+  overflow: hidden; /* 넘치는 텍스트는 숨깁니다. */
+  text-overflow: ellipsis; /* 초과하는 텍스트에 대해 말줄임 (...) 표시합니다. */
+}
+.vrInLeft {
+  padding: 0 5rem;
+}
+.attendees.vrIn {
+  display: flex;
+  align-items: center;
+}
+.attendUsers {
+  display: grid;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  grid-template-rows: repeat(2, 0fr);
+  grid-template-columns: repeat(4, 1fr);
+}
+.listeners {
+  display: flex;
+  justify-content: space-around;
+}
+.listeners .proImaDiv img {
+  width: 3rem;
+}
+.userNick.lis {
+  width: 5rem;
+}
+.options {
+  display: flex;
+}
+
+.vrInRight {
+  padding: 0 5rem;
+}

@@ -1,0 +1,55 @@
+.sideBtn {
+  display: flex;
+  flex-direction: column;
+  width: 12.5rem;
+  justify-content: space-between;
+
+  background-color: white;
+  box-shadow: 16px 0px 22px -21px #00000038;
+  z-index: 1;
+
+  padding: 2.2rem 0;
+}
+.logoAndHome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2.9rem;
+}
+.home {
+  color: #000;
+  /* font-size: 20px = 1rem; */
+  font-weight: 700;
+  letter-spacing: 0.0407rem;
+}
+
+.menuBtns {
+  display: flex;
+  flex-direction: column;
+}
+.menuBtns.t {
+  justify-content: space-between;
+  height: 10.75rem;
+}
+.menuBtns.b {
+  justify-content: space-between;
+  height: 3.55rem;
+}
+.menuBtns.t .btn {
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.btn,
+.btn:visited,
+.logoAndHome,
+.logoAndHome:visited {
+  background-color: unset;
+  border: none;
+
+  text-decoration: none;
+
+  color: #211922;
+  /* font-family: Pretendard; */
+}

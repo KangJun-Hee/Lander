@@ -1,0 +1,30 @@
+.chat {
+  background-color: #ffffff;
+  height: 80vh;
+  /* height: 30vh; 세 명 들어갈 정도*/
+  filter: drop-shadow(0 0.15rem 0.2rem rgb(0 0 0 / 8%));
+  box-shadow: inset 0 0 0.656rem rgb(0 0 0 / 8%);
+}
+.announce {
+  display: flex;
+  align-items: center;
+  /* background-color: #faebd792; */
+}
+.chatForRoomHR {
+  border: #e6e9f4 0.006rem solid;
+}
+.aChat {
+  display: flex;
+}
+.aChat .proImaDiv img {
+  width: 3rem;
+}
+
+.sendDiv {
+  display: flex;
+  margin: 0 1rem;
+}
+.msgSendInput {
+  border: none;
+  flex: 1 1 auto;
+}

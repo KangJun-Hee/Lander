@@ -1,0 +1,20 @@
+.pLeft {
+  padding: 0 2rem;
+}
+.liveCam {
+  width: 50vh;
+  height: 30vh;
+  background-color: rgb(255, 218, 218);
+}
+.video{
+  width: 50%;
+}
+.speakerId {
+  position: absolute;
+  top: 10;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.camSpace .proImaDiv img {
+  width: 4rem;
+}

@@ -1,0 +1,35 @@
+.writerTop {
+  display: flex;
+  align-items: center;
+}
+.writerTop .proImaDiv img {
+  width: 4rem;
+}
+.cmtTime {
+  color: #7e84a3;
+}
+.CommentAreaSt {
+  display: flex;
+}
+.commentCount {
+  color: #83a2ff;
+}
+.commentInput {
+  /* border: ; */
+}
+.cmtPostBtn {
+  background-color: #83a2ff;
+  color: white;
+  border: none;
+  border-radius: 0.6rem;
+  padding: 0.6rem;
+}
+.Comments .proImaDiv img {
+  width: 3rem;
+}
+
+.mmtContIn {
+  margin: 0 7rem;
+  padding: 3rem 6rem;
+  background-color: #ffffff;
+}

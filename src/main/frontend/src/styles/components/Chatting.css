@@ -1,0 +1,54 @@
+.Chatting {
+  width: 26rem;
+  height: 5rem;
+  margin-bottom: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.proImg.cht {
+  display: flex;
+  width: 23%;
+  justify-content: center;
+}
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 4rem;
+  width: 77%;
+}
+.rUp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 1rem;
+}
+.id {
+  color: #7e84a3;
+}
+.rUpright {
+  display: flex;
+  align-items: center;
+}
+.chatTime {
+  color: #7e84a3;
+}
+.options {
+  cursor: pointer;
+}
+.msgPreview {
+  margin: 0;
+  text-align: left;
+}
+.sendDiv {
+  border: 1.5px solid #83a2ff;
+  border-radius: 1.5rem;
+}
+.msgSendInput {
+  background-color: #ffffff00;
+}
+.aChat {
+  min-height: 2.5rem;
+}

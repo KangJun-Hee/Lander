@@ -1,0 +1,63 @@
+.vrCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 7.95rem;
+  height: 9.7rem;
+  background-color: white;
+
+  padding: 1rem;
+
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.75rem 0.2rem hsl(225deg 100% 75.69% / 12%);
+  
+  border: 1px #eeeeee solid;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+}
+.top.vr {
+  justify-content: space-between;
+}
+
+.proImg {
+  display: flex;
+  justify-content: center;
+}
+.proImg .proImaDiv img {
+  width: 2rem;
+}
+.rUp.vr {
+  width: 62%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 1rem;
+}
+
+.roomTitle.aVR {
+  height: 7.6875rem;
+  text-align: left;
+}
+
+.users {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.partiUsers {
+  display: flex;
+}
+.users .proImaDiv img {
+  width: 1.25rem;
+
+  overflow: hidden;
+  margin-left: -4px;
+}
+.countUsers {
+  display: flex;
+}
