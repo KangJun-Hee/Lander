@@ -113,11 +113,12 @@ function Join() {
   }, [shouldTransition, showDiv1]);
 
   // Nationality Modal
-  const Modal = ({ isOpen, onClose, children }) => {
+  const Modal = ({ isOpen, onClose, children, modalType }) => {
     return (
       <>
         {isOpen && (
-          <div className="modal-overlay noti">
+          // <div className="modal-overlay noti">
+          <div className={`modal-overlay noti ${modalType}`}>
             <div className="modal">
               <div className="modal-content">
                 {children}
@@ -131,13 +132,14 @@ function Join() {
       </>
     );
   };
+  const [modalType, setModalType] = useState(null);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => {
-    setIsModalOpen(true);
+  const openModal = (type) => {
+    setModalType(type);
   };
+
   const closeModal = () => {
-    setIsModalOpen(false);
+    setModalType(null);
   };
   return (
     <>
@@ -311,15 +313,21 @@ function Join() {
                     <div className="NatioSelect">
                       {/* 국적선택창이 따로 호옹-하고 위에 켜질 거임. 검색 가능하게. */}
                       <p className="optionTitle">Nationality</p>
-                      <button className="optionTitle N" onClick={openModal}>
+                      <button
+                        className="optionTitle N"
+                        // onClick={openModal}
+                        onClick={() => openModal("nationality")}
+                      >
                         Please Choose
                       </button>
                       {/* The Modal */}
                       <Modal
                         id="myModal"
-                        className="modal"
-                        isOpen={isModalOpen}
+                        // className="modal"
+                        // isOpen={isModalOpen}
                         onClose={closeModal}
+                        isOpen={modalType === "nationality"}
+                        modalType="nationality"
                       >
                         {/* <!-- Modal content --> */}
                         <div className="modal-content">
@@ -581,22 +589,28 @@ function Join() {
                     </div>
 
                     {/* 피그마 습득언어 복붙(인기언어만 하면 됨) */}
-                    <p className="optionTitle"> Desired Language</p>
-                    <button className="optionTitle" onClick={openModal}>
+                    <p className="optionTitle">Desired Language</p>
+                    <button
+                      className="optionTitle"
+                      // onClick={openModal}
+                      onClick={() => openModal("desiredLanguage")}
+                    >
                       Please Choose
                     </button>
                     {/* The Modal */}
                     <Modal
                       id="myModal"
-                      className="modal"
-                      isOpen={isModalOpen}
+                      // className="modal"
+                      // isOpen={isModalOpen}
                       onClose={closeModal}
+                      isOpen={modalType === "desiredLanguage"}
+                      modalType="desiredLanguage"
                     >
                       {/* <!-- Modal content --> */}
                       <div className="modal-content">
                         <div>
                           <img src={cancelX} onClick={closeModal} />
-                          <p>Nationality</p>
+                          <p>Desired Language</p>
                           <button>Save</button>
                         </div>
 
