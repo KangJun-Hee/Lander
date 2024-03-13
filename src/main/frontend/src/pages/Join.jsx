@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import GoogleLogin from "@leecheuk/react-google-login";
 import AppleLogin from "react-apple-login";
 import "../services/UserService";
+import { listLanguages } from "../services/LanguageService";
 
 import Select from "react-tailwindcss-select";
 
@@ -68,6 +69,18 @@ function Join() {
   useEffect(() => {
     setErrMsg("");
   }, [email, password, matchPassword]);
+
+  const [languages, setLanguages] = useState([]);
+  useEffect(() => {
+    listLanguages()
+      .then((response) => {
+        setLanguages(response.data);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
 
   const navigator = useNavigate();
 
@@ -338,251 +351,9 @@ function Join() {
                           </div>
 
                           <ul name="nationalities" id="nationalities-select">
-                            <li value="Afghanistan">Afghanistan</li>
-                            <li value="Albania">Albania</li>
-                            <li value="Algeria">Algeria</li>
-                            <li value="Andorra">Andorra</li>
-                            <li value="Angola">Angola</li>
-                            <li value="Antigua & Barbuda">Antigua & Barbuda</li>
-                            <li value="Argentina">Argentina</li>
-                            <li value="Armenia">Armenia</li>
-                            <li value="Aruba">Aruba</li>
-                            <li value="Australia">Australia</li>
-                            <li value="Austria">Austria</li>
-                            <li value="Azerbaijian">Azerbaijian</li>
-                            <li value="-"></li>
-                            <li value="Bahamas">Bahamas</li>
-                            <li value="Bahrain">Bahrain</li>
-                            <li value="Bangladesh">Bangladesh</li>
-                            <li value="Barbados">Barbados</li>
-                            <li value="Belarus">Belarus</li>
-                            <li value="Belgium">Belgium</li>
-                            <li value="Belize">Belize</li>
-                            <li value="Benin">Benin</li>
-                            <li value="Bhutan">Bhutan</li>
-                            <li value="Bolivia">Bolivia</li>
-                            <li value="Bosnia and Herzegovina">
-                              Bosnia and Herzegovina
-                            </li>
-                            <li value="Brazil">Brazil</li>
-                            <li value="Brunei Darussalam">Brunei Darussalam</li>
-                            <li value="Bulgaria">Bulgaria</li>
-                            <li value="Burkina Faso">Burkina Faso</li>
-                            <li value="Burundi">Burundi</li>
-                            <li value="-"></li>
-                            <li value="Cambodia">Cambodia</li>
-                            <li value="Cameroon">Cameroon</li>
-                            <li value="Canada">Canada</li>
-                            <li value="Cape Verde">Cape Verde</li>
-                            <li value="Central African Republic">
-                              Central African Republic
-                            </li>
-                            <li value="Chad">Chad</li>
-                            <li value="Chile">Chile</li>
-                            <li value="China">China</li>
-                            <li value="Colombia">Colombia</li>
-                            <li value="Comoros">Comoros</li>
-                            <li value="Congo(DR)">Congo(DR)</li>
-                            <li value="Congo(Republic)">Congo(Republic)</li>
-                            <li value="Cook Islands">Cook Islands</li>
-                            <li value="Costa Rica">Costa Rica</li>
-                            <li value="Cote d'lvoire">Cote d'lvoire</li>
-                            <li value="Croatia">Croatia</li>
-                            <li value="Cuba">Cuba</li>
-                            <li value="Curacao">Curacao</li>
-                            <li value="Cyprus">Cyprus</li>
-                            <li value="Czech Republic">Czech Republic</li>
-                            <li value="-"></li>
-                            <li value="Denmark">Denmark</li>
-                            <li value="Djibouti">Djibouti</li>
-                            <li value="Dominica">Dominica</li>
-                            <li value="Dominican Republic">
-                              Dominican Republic
-                            </li>
-                            <li value="-"></li>
-                            <li value="Ecuador">Ecuador</li>
-                            <li value="Egypt">Egypt</li>
-                            <li value="El Salvador">El Salvador</li>
-                            <li value="Equatorial Guinea">Equatorial Guinea</li>
-                            <li value="Eritrea">Eritrea</li>
-                            <li value="Estonia">Estonia</li>
-                            <li value="Ethiopia">Ethiopia</li>
-                            <li value="-"></li>
-                            <li value="Faroe Islands">Faroe Islands</li>
-                            <li value="Fiji">Fiji</li>
-                            <li value="Finland">Finland</li>
-                            <li value="France">France</li>
-                            <li value="-"></li>
-                            <li value="Gabon">Gabon</li>
-                            <li value="Gambia">Gambia</li>
-                            <li value="Georgia">Georgia</li>
-                            <li value="Germany">Germany</li>
-                            <li value="Ghana">Ghana</li>
-                            <li value="Greece">Greece</li>
-                            <li value="Greenland">Greenland</li>
-                            <li value="Grenada">Grenada</li>
-                            <li value="Guam">Guam</li>
-                            <li value="Guatemala">Guatemala</li>
-                            <li value="Guernsey">Guernsey</li>
-                            <li value="Guinea">Guinea</li>
-                            <li value="Guinea Bissau">Guinea Bissau</li>
-                            <li value="Guyana">Guyana</li>
-                            <li value="-"></li>
-                            <li value="Haiti">Haiti</li>
-                            <li value="Honduras">Honduras</li>
-                            <li value="Hong Kong">Hong Kong</li>
-                            <li value="Hungary">Hungary</li>
-                            <li value="-"></li>
-                            <li value="Iceland">Iceland</li>
-                            <li value="India">India</li>
-                            <li value="Indonesia">Indonesia</li>
-                            <li value="Iran">Iran</li>
-                            <li value="Iraq">Iraq</li>
-                            <li value="Ireland">Ireland</li>
-                            <li value="Israel">Israel</li>
-                            <li value="Italy">Italy</li>
-                            <li value="-"></li>
-                            <li value="Jamaica">Jamaica</li>
-                            <li value="Japan">Japan</li>
-                            <li value="Jersey">Jersey</li>
-                            <li value="Jordan">Jordan</li>
-                            <li value="-"></li>
-                            <li value="Kazakhstan">Kazakhstan</li>
-                            <li value="Kenya">Kenya</li>
-                            <li value="Kiribati">Kiribati</li>
-                            <li value="Korea">Korea</li>
-                            <li value="Kosovo">Kosovo</li>
-                            <li value="Kuwait">Kuwait</li>
-                            <li value="Kyrgyzstan">Kyrgyzstan</li>
-                            <li value="-"></li>
-                            <li value="Laos">Laos</li>
-                            <li value="Latvia">Latvia</li>
-                            <li value="Lebanon">Lebanon</li>
-                            <li value="Lesotho">Lesotho</li>
-                            <li value="Liberia">Liberia</li>
-                            <li value="Libya">Libya</li>
-                            <li value="Liechtenstein">Liechtenstein</li>
-                            <li value="Lithuania">Lithuania</li>
-                            <li value="Luxembourg">Luxembourg</li>
-                            <li value="-"></li>
-                            <li value="Macau">Macau</li>
-                            <li value="Madagascar">Madagascar</li>
-                            <li value="Malawi">Malawi</li>
-                            <li value="Malaysia">Malaysia</li>
-                            <li value="Maldives">Maldives</li>
-                            <li value="Mali">Mali</li>
-                            <li value="Malta">Malta</li>
-                            <li value="Marshall Islands">Marshall Islands</li>
-                            <li value="Mauritania">Mauritania</li>
-                            <li value="Mauritius">Mauritius</li>
-                            <li value="Mexico">Mexico</li>
-                            <li value="Micronesia">Micronesia</li>
-                            <li value="Monaco">Monaco</li>
-                            <li value="Mozambiqua">Mozambiqua</li>
-                            <li value="Moldova">Moldova</li>
-                            <li value="Mongolia">Mongolia</li>
-                            <li value="Montenegro">Montenegro</li>
-                            <li value="Morocco">Morocco</li>
-                            <li value="Myanmar(Burma)">Myanmar(Burma)</li>
-                            <li value="-"></li>
-                            <li value="Namibia">Namibia</li>
-                            <li value="Nauru">Nauru</li>
-                            <li value="Nepal">Nepal</li>
-                            <li value="Netherlands">Netherlands</li>
-                            <li value="New Zealand">New Zealand</li>
-                            <li value="Nicaragua">Nicaragua</li>
-                            <li value="Niger">Niger</li>
-                            <li value="Nigeria">Nigeria</li>
-                            <li value="Niue">Niue</li>
-                            <li value="North Korea">North Korea</li>
-                            <li value="North Macedonia">North Macedonia</li>
-                            <li value="Norway">Norway</li>
-                            <li value="-"></li>
-                            <li value="Oman">Oman</li>
-                            <li value="-"></li>
-                            <li value="Pakistan">Pakistan</li>
-                            <li value="Palau">Palau</li>
-                            <li value="Palestine">Palestine</li>
-                            <li value="Panama">Panama</li>
-                            <li value="Papua New Guines">Papua New Guines</li>
-                            <li value="Paraguay">Paraguay</li>
-                            <li value="Peru">Peru</li>
-                            <li value="Philippines">Philippines</li>
-                            <li value="Poland">Poland</li>
-                            <li value="Portugal">Portugal</li>
-                            <li value="Puerto Rico(USA)">Puerto Rico(USA)</li>
-                            <li value="-"></li>
-                            <li value="Qatar">Qatar</li>
-                            <li value="-"></li>
-                            <li value="Romania">Romania</li>
-                            <li value="Russia">Russia</li>
-                            <li value="Rwanda">Rwanda</li>
-                            <li value="-"></li>
-                            <li value="Saint Kitts ans Nevis">
-                              Saint Kitts ans Nevis
-                            </li>
-                            <li value="Saint Lucia">Saint Lucia</li>
-                            <li value="Saint Vincent and the Grenadines">
-                              Saint Vincent and the Grenadines
-                            </li>
-                            <li value="Samoa">Samoa</li>
-                            <li value="San Marino">San Marino</li>
-                            <li value="Sao Tome And Principe">
-                              Sao Tome And Principe
-                            </li>
-                            <li value="Saudi Arabia">Saudi Arabia</li>
-                            <li value="Scotland(UK)">Scotland(UK)</li>
-                            <li value="Senegal">Senegal</li>
-                            <li value="Serbia">Serbia</li>
-                            <li value="Seychelles">Seychelles</li>
-                            <li value="Sierra Leone">Sierra Leone</li>
-                            <li value="Singapore">Singapore</li>
-                            <li value="Solomon Islands">Solomon Islands</li>
-                            <li value="Slovakia">Slovakia</li>
-                            <li value="Slovenia">Slovenia</li>
-                            <li value="Somalia">Somalia</li>
-                            <li value="South Africa">South Africa</li>
-                            <li value="South Sudan">South Sudan</li>
-                            <li value="Spain">Spain</li>
-                            <li value="Sri Lanka">Sri Lanka</li>
-                            <li value="Sudan">Sudan</li>
-                            <li value="Suriname">Suriname</li>
-                            <li value="Swaziland">Swaziland</li>
-                            <li value="Sweden">Sweden</li>
-                            <li value="Switzerland">Switzerland</li>
-                            <li value="Syria">Syria</li>
-                            <li value="-"></li>
-                            <li value="Taiwan">Taiwan</li>
-                            <li value="Tajikistan">Tajikistan</li>
-                            <li value="Tanzania">Tanzania</li>
-                            <li value="Thailand">Thailand</li>
-                            <li value="Timor-Leste">Timor-Leste</li>
-                            <li value="Togo">Togo</li>
-                            <li value="Tonga">Tonga</li>
-                            <li value="Trinidad ans Tobago">
-                              Trinidad ans Tobago
-                            </li>
-                            <li value="Tunisia">Tunisia</li>
-                            <li value="Turkiye">Turkiye</li>
-                            <li value="Turkmenistan">Turkmenistan</li>
-                            <li value="Tuvalu">Tuvalu</li>
-                            <li value="-"></li>
-                            <li value="UAE">UAE</li>
-                            <li value="Uganda">Uganda</li>
-                            <li value="UK">UK</li>
-                            <li value="Ukraine">Ukraine</li>
-                            <li value="Uruguay">Uruguay</li>
-                            <li value="USA">USA</li>
-                            <li value="Uzbekistan">Uzbekistan</li>
-                            <li value="-"></li>
-                            <li value="Vanuatu">Vanuatu</li>
-                            <li value="Venezuela">Venezuela</li>
-                            <li value="Viet Nam">Viet Nam</li>
-                            <li value="-"></li>
-                            <li value="Yemen">Yemen</li>
-                            <li value="-"></li>
-                            <li value="Zambia">Zambia</li>
-                            <li value="Zimbabwe">Zimbabwe</li>
+                            {languages.map((language) => (
+                              <p>{language.languageName}</p>
+                            ))}
                           </ul>
                         </div>
                       </Modal>
