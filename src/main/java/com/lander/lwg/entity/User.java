@@ -28,4 +28,8 @@ public class User {
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
+
+    @Column(name = "languageName", nullable = false)
+//    @JoinColumn(name = "languageName")
+    private String languageName;
 }

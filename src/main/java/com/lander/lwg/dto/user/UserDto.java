@@ -1,7 +1,6 @@
 package com.lander.lwg.dto.user;
 
 import com.lander.lwg.entity.User;
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +16,7 @@ public class UserDto {
     private String password;
     private String username;
     private String email;
+    private String languageName;
 
     public static UserDto toUserDto(User user){
         UserDto userDto = new UserDto();
@@ -24,6 +24,7 @@ public class UserDto {
         userDto.setPassword(user.getPassword());
         userDto.setUsername(user.getUsername());
         userDto.setEmail(user.getEmail());
+        userDto.setLanguageName(user.getLanguageName());
 
         return userDto;
     }

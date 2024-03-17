@@ -70,6 +70,7 @@ function Join() {
     setErrMsg("");
   }, [email, password, matchPassword]);
 
+  //select native language
   const [languages, setLanguages] = useState([]);
   useEffect(() => {
     listLanguages()
@@ -80,15 +81,28 @@ function Join() {
       .catch((error) => {
         console.error(error);
       });
-  });
+  }, []);
+  const [selectedLanguage, setSelectedLanguage] = useState("");
+  const handleLanguageClick = (languageName) => {
+    setSelectedLanguage(languageName);
+    console.log("Selected Native Language is : " + languageName);
+    // saveToDatabase(languageName);
+    // saveUser(languageName);
+  };
 
   const navigator = useNavigate();
 
   function saveUser(e) {
     e.preventDefault();
 
-    const user = { email, id, username, password };
-    console.log(user);
+    const user = {
+      email,
+      id,
+      username,
+      password,
+      languageName: selectedLanguage,
+    };
+    console.log("input data" + user);
 
     createUser(user).then((response) => {
       console.log(response.data);
@@ -352,7 +366,14 @@ function Join() {
 
                           <ul name="nationalities" id="nationalities-select">
                             {languages.map((language) => (
-                              <p>{language.languageName}</p>
+                              <li
+                                key={language.languageId}
+                                onClick={() =>
+                                  handleLanguageClick(language.languageName)
+                                }
+                              >
+                                {language.languageName}
+                              </li>
                             ))}
                           </ul>
                         </div>
