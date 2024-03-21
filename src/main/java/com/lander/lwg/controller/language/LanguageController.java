@@ -1,11 +1,8 @@
-package com.lander.lwg.controller;
+package com.lander.lwg.controller.language;
 
-import com.lander.lwg.dto.LanguageDto;
-import com.lander.lwg.dto.user.UserDto;
-import com.lander.lwg.repository.LanguageRepository;
-import com.lander.lwg.repository.UserRepository;
-import com.lander.lwg.service.LanguageService;
-import com.lander.lwg.service.UserService;
+import com.lander.lwg.dto.language.LanguageDto;
+import com.lander.lwg.repository.language.LanguageRepository;
+import com.lander.lwg.service.language.LanguageService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +29,7 @@ public class LanguageController {
         List<LanguageDto> languages = languageService.getAllLanguages();
         return ResponseEntity.ok(languages);
     }
+
 
     @PutMapping("{id}")
     public  ResponseEntity<LanguageDto> updateLanguage(@PathVariable("id") int languageId,

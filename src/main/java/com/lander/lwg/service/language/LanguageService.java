@@ -1,7 +1,6 @@
-package com.lander.lwg.service;
+package com.lander.lwg.service.language;
 
-import com.lander.lwg.dto.LanguageDto;
-import com.lander.lwg.dto.user.UserDto;
+import com.lander.lwg.dto.language.LanguageDto;
 
 import java.util.List;
 

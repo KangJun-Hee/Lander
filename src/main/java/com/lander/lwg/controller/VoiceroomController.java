@@ -1,7 +1,6 @@
 package com.lander.lwg.controller;
 
 import com.lander.lwg.dto.VoiceroomDto;
-import com.lander.lwg.dto.user.UserDto;
 import com.lander.lwg.repository.VoiceroomRepository;
 import com.lander.lwg.service.VoiceroomService;
 import lombok.AllArgsConstructor;
@@ -22,6 +21,9 @@ public class VoiceroomController {
     @PostMapping
     public ResponseEntity<VoiceroomDto> createVoiceroom(@RequestBody VoiceroomDto voiceroomDto){
         System.out.println("createVoiceroom runs"+voiceroomDto);
+        System.out.println("createVoiceroom:"+voiceroomDto.getVoiceroomId());
+        System.out.println("createVoiceroom:"+voiceroomDto.getRoomTitle());
+        System.out.println("createVoiceroom:"+voiceroomDto.getLanguage());
         VoiceroomDto savedVoiceroom = voiceroomService.createVoiceroom(voiceroomDto);
         return new ResponseEntity<>(savedVoiceroom, HttpStatus.CREATED);
     }

@@ -1,8 +1,6 @@
-package com.lander.lwg.dto;
+package com.lander.lwg.dto.language;
 
-import com.lander.lwg.dto.user.UserDto;
 import com.lander.lwg.entity.Language;
-import com.lander.lwg.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

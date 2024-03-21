@@ -16,7 +16,8 @@ public class UserDto {
     private String password;
     private String username;
     private String email;
-    private String languageName;
+    private String languageName;//change column name to 'native language'
+    private String desiredLanguageName;
 
     public static UserDto toUserDto(User user){
         UserDto userDto = new UserDto();
@@ -25,6 +26,7 @@ public class UserDto {
         userDto.setUsername(user.getUsername());
         userDto.setEmail(user.getEmail());
         userDto.setLanguageName(user.getLanguageName());
+        userDto.setDesiredLanguageName(user.getDesiredLanguageName());
 
         return userDto;
     }

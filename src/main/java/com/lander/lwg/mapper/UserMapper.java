@@ -11,7 +11,8 @@ public class UserMapper {
                 user.getPassword(),
                 user.getUsername(),
                 user.getEmail(),
-                user.getLanguageName()
+                user.getLanguageName(),
+                user.getDesiredLanguageName()
         );
     }
 
@@ -22,7 +23,8 @@ public class UserMapper {
                 userDto.getPassword(),
                 userDto.getUsername(),
                 userDto.getEmail(),
-                userDto.getLanguageName()
+                userDto.getLanguageName(),
+                userDto.getDesiredLanguageName()
         );
     }
 }

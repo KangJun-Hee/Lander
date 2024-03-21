@@ -1,9 +1,7 @@
-package com.lander.lwg.mapper;
+package com.lander.lwg.mapper.language;
 
-import com.lander.lwg.dto.LanguageDto;
-import com.lander.lwg.dto.user.UserDto;
+import com.lander.lwg.dto.language.LanguageDto;
 import com.lander.lwg.entity.Language;
-import com.lander.lwg.entity.User;
 
 public class LanguageMapper {
     public static LanguageDto mapToLanguageDto(Language language){

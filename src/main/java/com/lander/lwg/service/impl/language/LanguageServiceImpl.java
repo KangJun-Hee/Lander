@@ -1,15 +1,11 @@
-package com.lander.lwg.service.impl;
+package com.lander.lwg.service.impl.language;
 
-import com.lander.lwg.dto.LanguageDto;
-import com.lander.lwg.dto.user.UserDto;
+import com.lander.lwg.dto.language.LanguageDto;
 import com.lander.lwg.entity.Language;
-import com.lander.lwg.entity.User;
 import com.lander.lwg.exception.ResourceNotFoundException;
-import com.lander.lwg.mapper.LanguageMapper;
-import com.lander.lwg.mapper.UserMapper;
-import com.lander.lwg.repository.LanguageRepository;
-import com.lander.lwg.repository.UserRepository;
-import com.lander.lwg.service.LanguageService;
+import com.lander.lwg.mapper.language.LanguageMapper;
+import com.lander.lwg.repository.language.LanguageRepository;
+import com.lander.lwg.service.language.LanguageService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
