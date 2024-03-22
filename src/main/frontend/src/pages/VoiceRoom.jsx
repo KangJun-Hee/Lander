@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/VoiceRoom.css";
+import { FaExchangeAlt } from "react-icons/fa";
 import cancelX from "../../public/images/cancelX.svg";
 import startRoom from "../../public/images/startRoom.svg";
 import VoiceRooma from "../components/aVoiceRoom";
 import Livea from "../components/aLive";
-import { createRoom } from "../services/RoomService";
+import { listRooms, createRoom } from "../services/RoomService";
+import { getUser } from "../services/UserService";
 
 function VoiceRoom() {
   const [selectedTab, setSelectedTab] = useState("voiceRoom"); // chat 또는 voiceRoom 중 선택
@@ -29,6 +31,19 @@ function VoiceRoom() {
     (key) => selectedTabs[key]
   );
 
+  const [rooms, setRooms] = useState([]);
+  useEffect(() => {
+    listRooms()
+      .then((response) => {
+        setRooms(response.data);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  // createVoiceroomModal
   const Modal = ({ isOpen, children }) => {
     return (
       <>
@@ -50,30 +65,65 @@ function VoiceRoom() {
     setIsModalOpen(false);
   };
 
-  const roomTitleRef = useRef(null);
-  const [roomTitle, setroomTitle] = useState("");
-  const [userId, setUserId] = useState("");
-  const [language, setLanguage] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [users, setUsers] = useState([]);
   useEffect(() => {
-    const savedUserId = parseInt(sessionStorage.getItem("userId"));
-
-    if (roomTitleRef.current) {
-      roomTitleRef.current.focus();
-    }
-    if (savedUserId) {
-      setUserId(savedUserId);
+    const userId = sessionStorage.getItem("userId"); // Retrieve userId from sessionStorage
+    if (userId) {
+      getUser(userId) // Pass userId to getUser function
+        .then((response) => {
+          setUsers(response.data);
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   }, []);
+  const roomTitleRef = useRef(null);
+  const [roomTitle, setroomTitle] = useState("");
+  // const [userId, setUserId] = useState("");
+  const [language, setLanguage] = useState("");
+  const [success, setSuccess] = useState(false);
+  // useEffect(() => {
+  //   const savedUserId = parseInt(sessionStorage.getItem("userId"));
+
+  //   if (roomTitleRef.current) {
+  //     roomTitleRef.current.focus();
+  //   }
+  //   if (savedUserId) {
+  //     setUserId(savedUserId);
+  //   }
+  // }, []);
 
   const navigator = useNavigate();
   function saveRoom(e) {
     e.preventDefault();
 
-    console.log(Object.keys(selectedTabs).filter((key) => selectedTabs[key]));
+    // console.log(Object.keys(selectedTabs).filter((key) => selectedTabs[key]));
 
-    const room = { roomTitle, userId, selectedTabs: selectedTabsArray };
-    console.log("savedRoomInfor", room);
+    // const room = { roomTitle, userId, selectedTabs: selectedTabsArray };
+    // console.log("savedRoomInfor", room);
+
+    // Get the selected language tab
+    const selectedLanguageTab = Object.keys(selectedTabs).find(
+      (key) => selectedTabs[key]
+    );
+
+    // Get the data associated with the selected language tab
+    let selectedLanguageData;
+    if (selectedLanguageTab === "lanOne") {
+      // Handle data for the first language tab
+      selectedLanguageData = { language: users.languageName };
+    } else if (selectedLanguageTab === "lanTwo") {
+      // Handle data for the second language tab
+      selectedLanguageData = { language: users.desiredLanguageName };
+    } else if (selectedLanguageTab === "lanExcha") {
+      selectedLanguageData = { language: users.desiredLanguageName };
+    }
+    // Add more conditions if you have additional language tabs
+
+    // Combine selected language data with other room information
+    const room = { roomTitle, userId, selectedLanguageData };
 
     createRoom(room).then((response) => {
       console.log(response.data);
@@ -107,28 +157,9 @@ function VoiceRoom() {
       <div className="contAllAndStartBtn">
         {selectedTab === "voiceRoom" && (
           <div className="vrContAll VR">
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-            <VoiceRooma></VoiceRooma>
-
-            <div className="vrCont">last</div>
+            {rooms.map((item) => (
+              <VoiceRooma key={item.id} item={item}></VoiceRooma>
+            ))}
           </div>
         )}
         {selectedTab === "live" && (
@@ -156,7 +187,7 @@ function VoiceRoom() {
               <button onClick={saveRoom}>Start!</button>
             </div>
             <div>
-              <label>Please enter a room title!</label>
+              <p>Please enter a room title!</p>
               <input
                 type="text"
                 name="roomTitle"
@@ -168,14 +199,15 @@ function VoiceRoom() {
               />
             </div>
             <div>
-              <label>Please Select a language!</label>
+              <p>Please Select a language!</p>
               <button
                 onClick={() => handleRoomLanTabClick("lanOne")}
                 className={`btnColour ${
                   selectedTabs.lanOne ? "selectedTabs" : "unselectedTabs"
                 }`}
+                value={users.languageName}
               >
-                lanOne
+                {users.languageName}
               </button>
               <button
                 onClick={() => handleRoomLanTabClick("lanTwo")}
@@ -183,7 +215,7 @@ function VoiceRoom() {
                   selectedTabs.lanTwo ? "selectedTabs" : "unselectedTabs"
                 }`}
               >
-                lanTwo
+                {users.desiredLanguageName}
               </button>
               <button
                 onClick={() => handleRoomLanTabClick("lanExcha")}
@@ -191,7 +223,9 @@ function VoiceRoom() {
                   selectedTabs.lanExcha ? "selectedTabs" : "unselectedTabs"
                 }`}
               >
-                En↔️Kr
+                {users.languageName}
+                <FaExchangeAlt />
+                {users.desiredLanguageName}
               </button>
               <div>
                 <div>

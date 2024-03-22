@@ -7,24 +7,26 @@ import CancelX from "../../public/images/cancelX.svg";
 import ProfilePicture from "../../public/images/ProfilePicture.svg";
 
 import "../styles/MyPage.css";
-import { listUsers } from "../services/UserService";
+import { listUsers, getUser } from "../services/UserService";
 import { logout } from "../services/UserService";
 
 function MyPage() {
   const [users, setUsers] = useState([]);
   const [username, setUsername] = useState("");
 
-  // useEffect(() => {
-  //   listUsers()
-  //     .then((response) => {
-  //       setUsers(response.data);
-  //       console.log(response);
-
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // });
+  useEffect(() => {
+    const userId = sessionStorage.getItem("userId"); // Retrieve userId from sessionStorage
+    if (userId) {
+      getUser(userId) // Pass userId to getUser function
+        .then((response) => {
+          setUsers(response.data);
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, []);
   useEffect(() => {
     // Retrieve the username from sessionStorage
     const storedUsername = sessionStorage.getItem("username");
@@ -65,12 +67,6 @@ function MyPage() {
       <div className="Info">
         <div className="Content">
           <ProfileImage />
-          {/* {users.map((user) => (
-            <div className="userNLang">
-              <p>{user.username}</p>
-              <p>@{user.id}</p>
-            </div>
-          ))} */}
           <div className="userNLang">{username}</div>
           <div>
             <label>Follower</label>
@@ -78,9 +74,10 @@ function MyPage() {
           </div>
         </div>
         <div className="lang">
-          <p>KR</p>
+
+          <p>{users.languageName}</p>
           <FaExchangeAlt />
-          <p>EN</p>
+          <p>{users.desiredLanguageName}</p>
         </div>
         <p>
           Hi! I'm from south america, i'd like to learn korean! plz sent me a

@@ -4,6 +4,7 @@ import com.lander.lwg.dto.VoiceroomDto;
 import com.lander.lwg.dto.user.UserDto;
 import com.lander.lwg.entity.User;
 import com.lander.lwg.entity.Voiceroom;
+import com.lander.lwg.exception.ResourceNotFoundException;
 import com.lander.lwg.mapper.UserMapper;
 import com.lander.lwg.mapper.VoiceroomMapper;
 import com.lander.lwg.repository.VoiceroomRepository;
@@ -25,6 +26,13 @@ public class VoiceroomImpl implements VoiceroomService {
         Voiceroom voiceroom = VoiceroomMapper.mapToVoiceroom(voiceroomDto);
         Voiceroom savedVoiceroom = voiceroomRepository.save(voiceroom);
         return null;
+    }
+
+    @Override
+    public VoiceroomDto getVoiceroomById(int voiceroomId) {
+        Voiceroom voiceroom = voiceroomRepository.findById(voiceroomId)
+                .orElseThrow(()-> new ResourceNotFoundException("Voiceroom is not exist with given id : "+voiceroomId));
+        return VoiceroomMapper.mapToVoiceroomDto(voiceroom);
     }
 
     @Override

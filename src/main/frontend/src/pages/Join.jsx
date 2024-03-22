@@ -5,6 +5,7 @@ import GoogleLogin from "@leecheuk/react-google-login";
 import AppleLogin from "react-apple-login";
 import "../services/UserService";
 import { listLanguages } from "../services/LanguageService";
+import { listDesiredLanguages } from "../services/DesiredLanguageService";
 
 import Select from "react-tailwindcss-select";
 
@@ -86,8 +87,23 @@ function Join() {
   const handleLanguageClick = (languageName) => {
     setSelectedLanguage(languageName);
     console.log("Selected Native Language is : " + languageName);
-    // saveToDatabase(languageName);
-    // saveUser(languageName);
+  };
+  //select desired language
+  const [desiredLanguages, setDesiredLanguages] = useState([]);
+  useEffect(() => {
+    listDesiredLanguages()
+      .then((response) => {
+        setDesiredLanguages(response.data);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  const [selectedDesiredLanguage, setSelectedDesiredLanguage] = useState("");
+  const handleDesiredLanguageClick = (desiredLanguageName) => {
+    setSelectedDesiredLanguage(desiredLanguageName);
+    console.log("Selected Desired Language is : " + desiredLanguageName);
   };
 
   const navigator = useNavigate();
@@ -101,6 +117,7 @@ function Join() {
       username,
       password,
       languageName: selectedLanguage,
+      desiredLanguageName: selectedDesiredLanguage,
     };
     console.log("input data" + user);
 
@@ -380,43 +397,53 @@ function Join() {
                       </Modal>
                     </div>
 
-                    {/* 피그마 습득언어 복붙(인기언어만 하면 됨) */}
-                    <p className="optionTitle">Desired Language</p>
-                    <button
-                      className="optionTitle"
-                      // onClick={openModal}
-                      onClick={() => openModal("desiredLanguage")}
-                    >
-                      Please Choose
-                    </button>
-                    {/* The Modal */}
-                    <Modal
-                      id="myModal"
-                      // className="modal"
-                      // isOpen={isModalOpen}
-                      onClose={closeModal}
-                      isOpen={modalType === "desiredLanguage"}
-                      modalType="desiredLanguage"
-                    >
-                      {/* <!-- Modal content --> */}
-                      <div className="modal-content">
-                        <div>
-                          <img src={cancelX} onClick={closeModal} />
-                          <p>Desired Language</p>
-                          <button>Save</button>
-                        </div>
+                    <div className="DesiredSelect">
+                      {/* 피그마 습득언어 복붙(인기언어만 하면 됨) */}
+                      <p className="optionTitle">Desired Language</p>
+                      <button
+                        className="optionTitle"
+                        // onClick={openModal}
+                        onClick={() => openModal("desiredLanguage")}
+                      >
+                        Please Choose
+                      </button>
+                      {/* The Modal */}
+                      <Modal
+                        id="myModal"
+                        // className="modal"
+                        // isOpen={isModalOpen}
+                        onClose={closeModal}
+                        isOpen={modalType === "desiredLanguage"}
+                        modalType="desiredLanguage"
+                      >
+                        {/* <!-- Modal content --> */}
+                        <div className="modal-content">
+                          <div>
+                            <img src={cancelX} onClick={closeModal} />
+                            <p>Desired Language</p>
+                            <button>Save</button>
+                          </div>
 
-                        <ul name="languages" id="languages-select">
-                          <li value="Afghanistan">Afghanistan</li>
-                          <li value="Albania">Albania</li>
-                          <li value="Algeria">Algeria</li>
-                          <li value="Andorra">Andorra</li>
-                          <li value="Angola">Angola</li>
-                          <li value="Antigua & Barbuda">Antigua & Barbuda</li>
-                          <li value="Argentina">Argentina</li>
-                        </ul>
-                      </div>
-                    </Modal>
+                          <ul name="languages" id="languages-select">
+                            {/* 'language' is just a variable name chosen to represent each
+                            element of the desiredLanguages array as you iterate
+                            over it using the map function. You could name this variable anything you like, such as item, lang*/}
+                            {desiredLanguages.map((language) => (
+                              <li
+                                key={language.languageId}
+                                onClick={() =>
+                                  handleDesiredLanguageClick(
+                                    language.desiredLanguageName
+                                  )
+                                }
+                              >
+                                {language.desiredLanguageName}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </Modal>
+                    </div>
                   </div>
                   <button
                     className="nextAndJoinBtn"

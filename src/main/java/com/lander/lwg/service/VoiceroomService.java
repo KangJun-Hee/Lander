@@ -8,6 +8,8 @@ import java.util.List;
 public interface VoiceroomService {
     VoiceroomDto createVoiceroom(VoiceroomDto voiceroomDto);
 
+    VoiceroomDto getVoiceroomById(int voiceroomId);
+
     List<VoiceroomDto> getAllVoicerooms();
 
 }

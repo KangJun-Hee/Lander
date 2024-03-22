@@ -4,21 +4,21 @@ import ProfileImage from "./ProfileImage";
 import { FiMoreVertical } from "react-icons/fi";
 import { FaUser } from "react-icons/fa";
 
-import { listRooms } from "../services/RoomService";
+import { listRooms, getVoiceroom } from "../services/RoomService";
 
-function VoiceRoom() {
+function VoiceRoom({item}) {
   const [voicerooms, setVoicerooms] = useState([]);
 
-  // useEffect(() => {
-  //   listRooms()
-  //     .then((response) => {
-  //       setVoicerooms(response.data);
-  //       console.log(response);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // });
+  useEffect(() => {
+    getVoiceroom()
+      .then((response) => {
+        setVoicerooms(response.data);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
   const handleButtonClick = () => {
     // 새 탭으로 이동할 주소
     const newTabUrl = "/voiceRoomIn";
@@ -29,18 +29,17 @@ function VoiceRoom() {
 
   return (
     <div className="vrCont" onClick={handleButtonClick}>
-      {voicerooms.map((voiceroom) => (
-        <div className="test">
+        <div className="test" key={item.voiceroomId}>
           <div className="top vr">
             <div className="proImg">
               <ProfileImage />
             </div>
             <div className="rUp vr">
-              <p className="userNick">{voiceroom.userID.username}</p>
+              {/* <p className="userNick">{voicerooms.userID.username}</p> */}
               <FiMoreVertical />
             </div>
           </div>
-          <p className="roomTitle aVR">{voiceroom.roomTitle}</p>
+          <p className="roomTitle aVR">{item.roomTitle}</p>
           <div className="users">
             <div className="countUsers">
               <FaUser />
@@ -54,7 +53,6 @@ function VoiceRoom() {
             </div>
           </div>
         </div>
-      ))}
     </div>
   );
 }

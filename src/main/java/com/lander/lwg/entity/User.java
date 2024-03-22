@@ -33,6 +33,6 @@ public class User {
 //    @JoinColumn(name = "languageName")
     private String languageName;//change column name to 'native language'
 
-    @Column(name = "desireLanguageName", nullable = false)
+    @Column(name = "desiredLanguageName", nullable = false)
     private String desiredLanguageName;
 }
