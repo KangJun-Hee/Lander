@@ -10,8 +10,8 @@ public class VoiceroomMapper {
                 voiceroom.getUserId(),
                 voiceroom.getRoomTitle(),
                 voiceroom.getRoleId(),
-                voiceroom.getLanguage(),
-                voiceroom.getChat()
+                voiceroom.getLanguageName()
+//                voiceroom.getChat()
         );
     }
 
@@ -21,8 +21,8 @@ public class VoiceroomMapper {
                 voiceroomDto.getUserId(),
                 voiceroomDto.getRoomTitle(),
                 voiceroomDto.getRoleId(),
-                voiceroomDto.getLanguage(),
-                voiceroomDto.getChat()
+                voiceroomDto.getLanguageName()
+//                voiceroomDto.getChat()
         );
     }
 }

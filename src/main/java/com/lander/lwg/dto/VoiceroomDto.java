@@ -19,8 +19,8 @@ public class VoiceroomDto {
     private int userId;
     private String roomTitle;
     private int roleId;
-    private Language languageID;
-    private Chat ChatID;
+    private String languageName;
+//    private Chat ChatID;
 
     // getUser 메서드 추가
 //    public int getUser() {
@@ -28,20 +28,20 @@ public class VoiceroomDto {
 //    }
 
     // getLanguage 메서드 추가
-    public Language getLanguage() {
-        return new Language(); // 또는 원하는 방식으로 Language 엔티티 생성
-    }
+//    public Language getLanguage() {
+//        return new Language(); // 또는 원하는 방식으로 Language 엔티티 생성
+//    }
 
     // getChat 메서드 추가
-    public Chat getChat() {
-        return new Chat(); // 또는 원하는 방식으로 Chat 엔티티 생성
-    }
+//    public Chat getChat() {
+//        return new Chat(); // 또는 원하는 방식으로 Chat 엔티티 생성
+//    }
 
     public static VoiceroomDto toVoiceroomDto(Voiceroom voiceroom){
         VoiceroomDto voiceroomDto = new VoiceroomDto();
         voiceroomDto.setVoiceroomId(voiceroom.getVoiceroomId());
-        voiceroomDto.setChatID(voiceroom.getChat());
-        voiceroomDto.setLanguageID(voiceroom.getLanguage());
+//        voiceroomDto.setChatID(voiceroom.getChat());
+        voiceroomDto.setLanguageName(voiceroom.getLanguageName());
         voiceroomDto.setRoleId(voiceroom.getRoleId());
         voiceroomDto.setUserId(voiceroom.getUserId());
         voiceroomDto.setRoomTitle(voiceroom.getRoomTitle());

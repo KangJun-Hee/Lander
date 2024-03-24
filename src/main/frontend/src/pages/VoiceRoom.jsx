@@ -66,8 +66,8 @@ function VoiceRoom() {
   };
 
   const [users, setUsers] = useState([]);
+  const userId = sessionStorage.getItem("userId"); // Retrieve userId from sessionStorage
   useEffect(() => {
-    const userId = sessionStorage.getItem("userId"); // Retrieve userId from sessionStorage
     if (userId) {
       getUser(userId) // Pass userId to getUser function
         .then((response) => {
@@ -99,7 +99,7 @@ function VoiceRoom() {
   function saveRoom(e) {
     e.preventDefault();
 
-    // console.log(Object.keys(selectedTabs).filter((key) => selectedTabs[key]));
+    console.log(Object.keys(selectedTabs).filter((key) => selectedTabs[key]));
 
     // const room = { roomTitle, userId, selectedTabs: selectedTabsArray };
     // console.log("savedRoomInfor", room);
@@ -113,17 +113,17 @@ function VoiceRoom() {
     let selectedLanguageData;
     if (selectedLanguageTab === "lanOne") {
       // Handle data for the first language tab
-      selectedLanguageData = { language: users.languageName };
+      selectedLanguageData = users.languageName;
     } else if (selectedLanguageTab === "lanTwo") {
       // Handle data for the second language tab
-      selectedLanguageData = { language: users.desiredLanguageName };
+      selectedLanguageData = users.desiredLanguageName ;
     } else if (selectedLanguageTab === "lanExcha") {
-      selectedLanguageData = { language: users.desiredLanguageName };
+      selectedLanguageData = users.desiredLanguageName;
     }
     // Add more conditions if you have additional language tabs
 
     // Combine selected language data with other room information
-    const room = { roomTitle, userId, selectedLanguageData };
+    const room = { roomTitle, userId, languageName: selectedLanguageData };
 
     createRoom(room).then((response) => {
       console.log(response.data);

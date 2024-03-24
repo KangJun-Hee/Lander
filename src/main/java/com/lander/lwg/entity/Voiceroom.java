@@ -29,13 +29,14 @@ public class Voiceroom {
 //    @Column(name = "roleId", nullable = false)
     private int roleId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+//    @ManyToOne(fetch = FetchType.EAGER)
 //    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "languageId")
-    private Language Language;
+//    @JoinColumn(name = "languageName")
+    @Column(name = "languageName" ,nullable = false)
+    private String LanguageName;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-//    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "chatId")
-    private Chat chat;
+//    @ManyToOne(fetch = FetchType.EAGER)
+////    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+//    @JoinColumn(name = "chatId")
+//    private Chat chat;
 }
