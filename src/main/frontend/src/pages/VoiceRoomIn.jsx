@@ -1,122 +1,61 @@
-import React from "react";
-import ProfileImage from "../components/ProfileImage";
-import ChattingForRoom from "../components/ChattingForRoom";
-import "../styles/VoiceRoomIn.css";
-import { FiUser } from "react-icons/fi";
-import { FaMicrophone } from "react-icons/fa";
-import { FaHand } from "react-icons/fa6";
-import { RiEmotionLaughLine } from "react-icons/ri";
+import React, { useRef, useEffect, useState } from "react";
+import "../styles/components/aVoiceRoom.css";
+import ProfileImage from "./ProfileImage";
+import { FiMoreVertical } from "react-icons/fi";
+import { FaUser } from "react-icons/fa";
 
+import { listRooms, getVoiceroom } from "../services/RoomService";
 
-function VoiceRoomIn() {
+function VoiceRoom({ item }) {
+  const [voicerooms, setVoicerooms] = useState([]);
+
+  useEffect(() => {
+    getVoiceroom()
+      .then((response) => {
+        setVoicerooms(response.data);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  const handleButtonClick = () => {
+    // 새 탭으로 이동할 주소
+    // const newTabUrl = "/voiceRoomIn";
+    const newTabUrl = `/voiceRoomIn/${item.voiceroomId}`
+
+    // 새 탭 열기
+    window.open(newTabUrl, "_blank");
+  };
+
   return (
-    <div className="vrDetPage">
-      <div className="vrInLeft">
-        <div className="titleAttendee">
-          <p className="roomTitle inVR">Today is my birthday! yay~~</p>
-          <div className="attendees vrIn">
-            <FiUser />
-            <p>22</p>
+    <div className="vrCont" onClick={handleButtonClick}>
+      <div className="test" key={item.voiceroomId}>
+        <div className="top vr">
+          <div className="proImg">
+            <ProfileImage />
+          </div>
+          <div className="rUp vr">
+            {/* <p className="userNick">{voicerooms.userID.username}</p> */}
+            <FiMoreVertical />
           </div>
         </div>
-        <hr />
-        <div className="attendUsers">
-          <div className="userInStage">
-            <ProfileImage />
-            <p className="hostTag">Host</p>
-            <p className="userNick">YangpaKoongya</p>
+        <p className="roomTitle aVR">{item.roomTitle}</p>
+        <div className="users">
+          <div className="countUsers">
+            <FaUser />
+            <p>24</p>
           </div>
-          <div className="userInStage">
-            <ProfileImage />
-            <p>YangpaKoongya</p>
-          </div>
-          <div className="userInStage">
-            <ProfileImage />
-            <p>YangpaKoongya</p>
-          </div>
-          <div className="userInStage">
-            <ProfileImage />
-            <p>YangpaKoongya</p>
-          </div>
-          <div className="userInStage">
-            <ProfileImage />
-            <p>YangpaKoongya</p>
-          </div>
-          <div className="userInStage">
-            <ProfileImage />
-            <p>YangpaKoongya</p>
-          </div>
-          <div className="userInStage">
-            <ProfileImage />
-            <p>YangpaKoongya</p>
-          </div>
-          <div className="userInStage">
-            <ProfileImage />
-            <p>YangpaKoongya</p>
+          <div className="partiUsers">
+            <ProfileImage className="profileForUsers" />
+            <ProfileImage className="profileForUsers" />
+            <ProfileImage className="profileForUsers" />
+            <ProfileImage className="profileForUsers" />
           </div>
         </div>
-        <div>
-          <hr />
-          <p>Listeners</p>
-          <hr />
-          <div className="listeners">
-            <div>
-              <ProfileImage />
-              <p className="userNick lis">YangpaKoongya</p>
-            </div>
-            <div>
-              <ProfileImage />
-              <p className="userNick lis">YangpaKoongya</p>
-            </div>
-            <div>
-              <ProfileImage />
-              <p className="userNick lis">YangpaKoongya</p>
-            </div>
-            <div>
-              <ProfileImage />
-              <p className="userNick lis">YangpaKoongya</p>
-            </div>
-            <div>
-              <ProfileImage />
-              <p className="userNick lis">YangpaKoongya</p>
-            </div>
-            <div>
-              <ProfileImage />
-              <p className="userNick lis">YangpaKoongya</p>
-            </div>
-          </div>
-          <div className="options">
-            <div>
-              <FaMicrophone />
-              <p>Mic</p>
-            </div>
-            <div>
-              <RiEmotionLaughLine />
-              <p>Mic</p>
-            </div>
-            <div>
-              <FaHand />
-              <p>Join</p>
-            </div>
-            <div>
-              <FaMicrophone />
-              <p>Mic</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="vrInRight">
-        <div>
-          <div>
-            <p>Participants</p>
-            <p>22</p>
-          </div>
-          <div></div>
-        </div>
-        <ChattingForRoom />
       </div>
     </div>
   );
 }
 
-export default VoiceRoomIn;
+export default VoiceRoom;
