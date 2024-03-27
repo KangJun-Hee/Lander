@@ -1,61 +1,148 @@
-import React, { useRef, useEffect, useState } from "react";
-import "../styles/components/aVoiceRoom.css";
-import ProfileImage from "./ProfileImage";
-import { FiMoreVertical } from "react-icons/fi";
-import { FaUser } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import ProfileImage from "../components/ProfileImage";
+import ChattingForRoom from "../components/ChattingForRoom";
+import "../styles/VoiceRoomIn.css";
+import { FiUser } from "react-icons/fi";
+import { FaMicrophone } from "react-icons/fa";
+import { FaHand } from "react-icons/fa6";
+import { RiEmotionLaughLine } from "react-icons/ri";
+import { getVoiceroom } from "../services/RoomService";
 
-import { listRooms, getVoiceroom } from "../services/RoomService";
-
-function VoiceRoom({ item }) {
-  const [voicerooms, setVoicerooms] = useState([]);
+function VoiceRoomIn() {
+  const { id } = useParams(); // Extract the room ID from the URL
+  useEffect(() => {
+    console.log(id);
+  }, [id]);
+  const [roomData, setRoomData] = useState(null);
 
   useEffect(() => {
-    getVoiceroom()
+    // Fetch room data from the backend using the room ID
+    getVoiceroom(id)
       .then((response) => {
-        setVoicerooms(response.data);
-        console.log(response);
+        setRoomData(response.data);
       })
       .catch((error) => {
-        console.error(error);
+        console.error("Error fetching room data:", error);
       });
-  }, []);
-  const handleButtonClick = () => {
-    // 새 탭으로 이동할 주소
-    // const newTabUrl = "/voiceRoomIn";
-    const newTabUrl = `/voiceRoomIn/${item.voiceroomId}`
-
-    // 새 탭 열기
-    window.open(newTabUrl, "_blank");
-  };
-
+  }, [id]);
   return (
-    <div className="vrCont" onClick={handleButtonClick}>
-      <div className="test" key={item.voiceroomId}>
-        <div className="top vr">
-          <div className="proImg">
-            <ProfileImage />
+    <div className="vrDetPage">
+      {roomData ? (
+        <div>
+          <div className="vrInLeft">
+            <div className="titleAttendee">
+              <p className="roomTitle inVR">
+                Today is my birthday! yay~~{roomData.roomTitle}
+              </p>
+              <div className="attendees vrIn">
+                <FiUser />
+                <p>22</p>
+                {roomData.languageName}
+              </div>
+            </div>
+            <hr />
+            <div className="attendUsers">
+              <div className="userInStage">
+                <ProfileImage />
+                <p className="hostTag">Host</p>
+                <p className="userNick">YangpaKoongya</p>
+              </div>
+              <div className="userInStage">
+                <ProfileImage />
+                <p>YangpaKoongya</p>
+              </div>
+              <div className="userInStage">
+                <ProfileImage />
+                <p>YangpaKoongya</p>
+              </div>
+              <div className="userInStage">
+                <ProfileImage />
+                <p>YangpaKoongya</p>
+              </div>
+              <div className="userInStage">
+                <ProfileImage />
+                <p>YangpaKoongya</p>
+              </div>
+              <div className="userInStage">
+                <ProfileImage />
+                <p>YangpaKoongya</p>
+              </div>
+              <div className="userInStage">
+                <ProfileImage />
+                <p>YangpaKoongya</p>
+              </div>
+              <div className="userInStage">
+                <ProfileImage />
+                <p>YangpaKoongya</p>
+              </div>
+            </div>
+            <div>
+              <hr />
+              <p>Listeners</p>
+              <hr />
+              <div className="listeners">
+                <div>
+                  <ProfileImage />
+                  <p className="userNick lis">YangpaKoongya</p>
+                </div>
+                <div>
+                  <ProfileImage />
+                  <p className="userNick lis">YangpaKoongya</p>
+                </div>
+                <div>
+                  <ProfileImage />
+                  <p className="userNick lis">YangpaKoongya</p>
+                </div>
+                <div>
+                  <ProfileImage />
+                  <p className="userNick lis">YangpaKoongya</p>
+                </div>
+                <div>
+                  <ProfileImage />
+                  <p className="userNick lis">YangpaKoongya</p>
+                </div>
+                <div>
+                  <ProfileImage />
+                  <p className="userNick lis">YangpaKoongya</p>
+                </div>
+              </div>
+              <div className="options">
+                <div>
+                  <FaMicrophone />
+                  <p>Mic</p>
+                </div>
+                <div>
+                  <RiEmotionLaughLine />
+                  <p>Mic</p>
+                </div>
+                <div>
+                  <FaHand />
+                  <p>Join</p>
+                </div>
+                <div>
+                  <FaMicrophone />
+                  <p>Mic</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="rUp vr">
-            {/* <p className="userNick">{voicerooms.userID.username}</p> */}
-            <FiMoreVertical />
+          <div className="vrInRight">
+            <div>
+              <div>
+                <p>Participants</p>
+                <p>22</p>
+              </div>
+              <div></div>
+            </div>
+            <ChattingForRoom />
           </div>
         </div>
-        <p className="roomTitle aVR">{item.roomTitle}</p>
-        <div className="users">
-          <div className="countUsers">
-            <FaUser />
-            <p>24</p>
-          </div>
-          <div className="partiUsers">
-            <ProfileImage className="profileForUsers" />
-            <ProfileImage className="profileForUsers" />
-            <ProfileImage className="profileForUsers" />
-            <ProfileImage className="profileForUsers" />
-          </div>
-        </div>
-      </div>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 }
 
-export default VoiceRoom;
+export default VoiceRoomIn;

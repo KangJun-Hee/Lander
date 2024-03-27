@@ -1,8 +1,6 @@
 package com.lander.lwg.controller;
 
 import com.lander.lwg.dto.VoiceroomDto;
-import com.lander.lwg.dto.user.UserDto;
-import com.lander.lwg.repository.VoiceroomRepository;
 import com.lander.lwg.service.VoiceroomService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,7 +15,6 @@ import java.util.List;
 @RequestMapping("/api/voicerooms")
 public class VoiceroomController {
     private VoiceroomService voiceroomService;
-    private VoiceroomRepository voiceroomRepository;
 
     @PostMapping
     public ResponseEntity<VoiceroomDto> createVoiceroom(@RequestBody VoiceroomDto voiceroomDto){
@@ -32,6 +29,8 @@ public class VoiceroomController {
     @GetMapping("{id}")
     //Build Get User REST API
     public ResponseEntity<VoiceroomDto> getVoiceroomById(@PathVariable("id") Integer voiceroomId){
+        System.out.println("getVoiceroomById voiceroomId : "+voiceroomId);
+
         VoiceroomDto voiceroomDto = voiceroomService.getVoiceroomById(voiceroomId);
         return ResponseEntity.ok(voiceroomDto);
     }

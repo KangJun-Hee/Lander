@@ -23,7 +23,7 @@ function Pages() {
       <Route path="/logIn" element={<LogIn />} />
 
       <Route path="/voiceRoom" element={<VoiceRoom />} />
-      <Route path="/voiceRoomIn" element={<VoiceRoomIn />} />
+      <Route path="/voiceRoomIn/:id" element={<VoiceRoomIn />} />
       <Route path="/liveIn" element={<LiveIn />} />
 
       <Route path="/moment" element={<Moment />} />

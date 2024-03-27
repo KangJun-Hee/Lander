@@ -6,7 +6,7 @@ import cancelX from "../../public/images/cancelX.svg";
 import startRoom from "../../public/images/startRoom.svg";
 import VoiceRooma from "../components/aVoiceRoom";
 import Livea from "../components/aLive";
-import { listRooms, createRoom } from "../services/RoomService";
+import { listRooms, createRoom, getVoiceroom } from "../services/RoomService";
 import { getUser } from "../services/UserService";
 
 function VoiceRoom() {
@@ -116,7 +116,7 @@ function VoiceRoom() {
       selectedLanguageData = users.languageName;
     } else if (selectedLanguageTab === "lanTwo") {
       // Handle data for the second language tab
-      selectedLanguageData = users.desiredLanguageName ;
+      selectedLanguageData = users.desiredLanguageName;
     } else if (selectedLanguageTab === "lanExcha") {
       selectedLanguageData = users.desiredLanguageName;
     }
@@ -127,8 +127,26 @@ function VoiceRoom() {
 
     createRoom(room).then((response) => {
       console.log(response.data);
-      navigator("/voiceRoomIn");
-      setSuccess(true);
+
+      // console.log("Room created with ID:", response.data.roomId);
+
+      // Navigate to the voice room page with the room ID
+      // navigator(`/voiceRoomIn/${response.data.roomId}`);
+      // setSuccess(true);
+
+      // Fetch the room details using the room ID
+      getVoiceroom(response.data.roomId)
+        .then((roomDetails) => {
+          console.log("Room details:", roomDetails.data);
+          // Navigate to the voice room page with the room details
+          navigator(`/voiceRoomIn/${response.data.roomId}`);
+          setSuccess(true);
+        })
+        .catch((error) => {
+          console.error("Error fetching room details:", error);
+          // Handle error
+        });
+      console.log("Room created with ID:", response.data.roomId);
     });
   }
 

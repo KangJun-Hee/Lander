@@ -6,7 +6,7 @@ import { FaUser } from "react-icons/fa";
 
 import { listRooms, getVoiceroom } from "../services/RoomService";
 
-function VoiceRoom({item}) {
+function VoiceRoom({ item }) {
   const [voicerooms, setVoicerooms] = useState([]);
 
   useEffect(() => {
@@ -20,8 +20,7 @@ function VoiceRoom({item}) {
       });
   }, []);
   const handleButtonClick = () => {
-    // 새 탭으로 이동할 주소
-    const newTabUrl = "/voiceRoomIn";
+    const newTabUrl = `/voiceRoomIn/${item.voiceroomId}`
 
     // 새 탭 열기
     window.open(newTabUrl, "_blank");
@@ -29,30 +28,30 @@ function VoiceRoom({item}) {
 
   return (
     <div className="vrCont" onClick={handleButtonClick}>
-        <div className="test" key={item.voiceroomId}>
-          <div className="top vr">
-            <div className="proImg">
-              <ProfileImage />
-            </div>
-            <div className="rUp vr">
-              {/* <p className="userNick">{voicerooms.userID.username}</p> */}
-              <FiMoreVertical />
-            </div>
+      <div className="test" key={item.voiceroomId}>
+        <div className="top vr">
+          <div className="proImg">
+            <ProfileImage />
           </div>
-          <p className="roomTitle aVR">{item.roomTitle}</p>
-          <div className="users">
-            <div className="countUsers">
-              <FaUser />
-              <p>24</p>
-            </div>
-            <div className="partiUsers">
-              <ProfileImage className="profileForUsers" />
-              <ProfileImage className="profileForUsers" />
-              <ProfileImage className="profileForUsers" />
-              <ProfileImage className="profileForUsers" />
-            </div>
+          <div className="rUp vr">
+            {/* <p className="userNick">{voicerooms.userID.username}</p> */}
+            <FiMoreVertical />
           </div>
         </div>
+        <p className="roomTitle aVR">{item.roomTitle}</p>
+        <div className="users">
+          <div className="countUsers">
+            <FaUser />
+            <p>24</p>
+          </div>
+          <div className="partiUsers">
+            <ProfileImage className="profileForUsers" />
+            <ProfileImage className="profileForUsers" />
+            <ProfileImage className="profileForUsers" />
+            <ProfileImage className="profileForUsers" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
