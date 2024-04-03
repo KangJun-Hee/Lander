@@ -12,7 +12,7 @@ import { logout } from "../services/UserService";
 
 function MyPage() {
   const [users, setUsers] = useState([]);
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
 
   useEffect(() => {
     const userId = sessionStorage.getItem("userId"); // Retrieve userId from sessionStorage
@@ -27,15 +27,15 @@ function MyPage() {
         });
     }
   }, []);
-  useEffect(() => {
-    // Retrieve the username from sessionStorage
-    const storedUsername = sessionStorage.getItem("username");
+  // useEffect(() => {
+  //   // Retrieve the username from sessionStorage
+  //   const storedUsername = sessionStorage.getItem("username");
 
-    // Update the state with the retrieved username
-    if (storedUsername) {
-      setUsername(storedUsername);
-    }
-  }, []);
+  //   // Update the state with the retrieved username
+  //   if (storedUsername) {
+  //     setUsername(storedUsername);
+  //   }
+  // }, []);
   const Modal = ({ isOpen, onClose, children }) => {
     return (
       <>
@@ -67,14 +67,17 @@ function MyPage() {
       <div className="Info">
         <div className="Content">
           <ProfileImage />
-          <div className="userNLang">{username}</div>
+          <div className="userNLang">
+            <p>{users.username}</p>
+            <p>{users.id}</p>
+          </div>
+
           <div>
             <label>Follower</label>
             <label>Following</label>
           </div>
         </div>
         <div className="lang">
-
           <p>{users.languageName}</p>
           <FaExchangeAlt />
           <p>{users.desiredLanguageName}</p>

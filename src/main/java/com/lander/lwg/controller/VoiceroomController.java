@@ -19,7 +19,6 @@ public class VoiceroomController {
     @PostMapping
     public ResponseEntity<VoiceroomDto> createVoiceroom(@RequestBody VoiceroomDto voiceroomDto){
         System.out.println("createVoiceroom runs : "+voiceroomDto);
-        System.out.println("createVoiceroom voiceroomId:"+voiceroomDto.getVoiceroomId());
         System.out.println("createVoiceroom roomTitle:"+voiceroomDto.getRoomTitle());
         System.out.println("createVoiceroom language:"+voiceroomDto.getLanguageName());
         VoiceroomDto savedVoiceroom = voiceroomService.createVoiceroom(voiceroomDto);

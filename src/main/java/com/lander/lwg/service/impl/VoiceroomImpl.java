@@ -25,7 +25,8 @@ public class VoiceroomImpl implements VoiceroomService {
     public VoiceroomDto createVoiceroom(VoiceroomDto voiceroomDto){
         Voiceroom voiceroom = VoiceroomMapper.mapToVoiceroom(voiceroomDto);
         Voiceroom savedVoiceroom = voiceroomRepository.save(voiceroom);
-        return null;
+// Map the saved entity back to DTO and return it
+        return VoiceroomMapper.mapToVoiceroomDto(savedVoiceroom);
     }
 
     @Override

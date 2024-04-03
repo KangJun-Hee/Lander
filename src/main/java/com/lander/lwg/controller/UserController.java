@@ -33,6 +33,8 @@ public class UserController {
     //Build Get User REST API
     public ResponseEntity<UserDto> getUserById(@PathVariable("id") Integer userId){
         UserDto userDto = userService.getUserById(userId);
+        System.out.println("getUserById userId : "+userDto.getUserId());
+
         return ResponseEntity.ok(userDto);
     }
 

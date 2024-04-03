@@ -126,7 +126,13 @@ function VoiceRoom() {
     const room = { roomTitle, userId, languageName: selectedLanguageData };
 
     createRoom(room).then((response) => {
-      console.log(response.data);
+      const newRecordId = response.data.voiceroomId;
+      console.log("newRecordId" + newRecordId);
+      console.log("response.data : " + response.data);
+      console.log("response : " + response);
+      console.log("response.roomId : " + response.roomId);
+      console.log(JSON.stringify(response));
+      console.log(JSON.stringify(response.data.roomTitle));
 
       // console.log("Room created with ID:", response.data.roomId);
 
@@ -135,18 +141,18 @@ function VoiceRoom() {
       // setSuccess(true);
 
       // Fetch the room details using the room ID
-      getVoiceroom(response.data.roomId)
+      getVoiceroom(response.data.voiceroomId)
         .then((roomDetails) => {
           console.log("Room details:", roomDetails.data);
           // Navigate to the voice room page with the room details
-          navigator(`/voiceRoomIn/${response.data.roomId}`);
+          navigator(`/voiceRoomIn/${response.data.voiceroomId}`);
           setSuccess(true);
         })
         .catch((error) => {
           console.error("Error fetching room details:", error);
           // Handle error
         });
-      console.log("Room created with ID:", response.data.roomId);
+      console.log("Room created with ID:", response.data.voiceroomId);
     });
   }
 
