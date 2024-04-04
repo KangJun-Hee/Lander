@@ -13,11 +13,12 @@ import { getVoiceroom } from "../services/RoomService";
 function VoiceRoomIn() {
   const { id } = useParams(); // Extract the room ID from the URL
   useEffect(() => {
-    // console.log("voiceroom ID is : " + id);
+    console.log("voiceroom ID is : " + id);
   }, [id]);
 
+  // using curly brackets {} creates a plain object.
   const [roomData, setRoomData] = useState({});
-  const [users, setUsers] = useState(null);
+  const [users, setUsers] = useState({});
 
   useEffect(() => {
     getVoiceroom(id)
@@ -30,13 +31,14 @@ function VoiceRoomIn() {
       });
   }, [id]);
 
-  console.log("after getVoiceroom, roomData.userId : " + roomData.userId);
+  // console.log("after getVoiceroom, roomData.userId : " + roomData.userId);
 
   useEffect(() => {
     if (roomData && roomData.userId) {
       console.log("just before getUser roomData.userId : " + roomData.userId);
       getUser(roomData.userId)
         .then((response) => {
+          console.log("getUser's res : " + JSON.stringify(response.data));
           setUsers(response.data);
         })
         .catch((error) => {
@@ -65,7 +67,7 @@ function VoiceRoomIn() {
                 <p className="hostTag">Host</p>
                 <p className="userNick">
                   {roomData.userId}
-                  {/* {users.username} */}
+                  {users.username}
                 </p>
               </div>
               <div className="userInStage">
